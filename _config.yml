@@ -1,5 +1,2 @@
 title: Thiago Marinho
-remote_theme: "mmistakes/minimal-mistakes@4.15.2"
-
-plugins:
-  - jekyll-include-cache
+theme: minima
