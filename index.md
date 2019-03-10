@@ -1,6 +1,6 @@
 ---
 title: Thiago Marinho
-layout: default
+layout: home
 ---
  
 Hello!
