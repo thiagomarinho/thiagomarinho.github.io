@@ -1,2 +1,10 @@
 title: Thiago Marinho
 theme: minima
+
+minima:
+  social_links:
+    twitter: thiagomarinho
+    github: thiagomarinho
+    telegram: thiagomarinho
+    facebook: thiagoomarinho
+    linkedin: thiagoomarinho
