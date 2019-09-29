@@ -1,6 +1,9 @@
 title: Thiago Marinho
 theme: minima
 
+header_pages:
+  - about.md
+
 minima:
   social_links:
     twitter: thiagomarinho
