@@ -1,13 +1,11 @@
 title: Thiago Marinho
-theme: minima
-
-header_pages:
-  - about.md
 
 minima:
   social_links:
     twitter: thiagomarinho
-    github: thiagomarinho
-    telegram: thiagomarinho
-    facebook: thiagoomarinho
-    linkedin: thiagoomarinho
+    github:  thiagomarinho
+
+header_pages:
+  - about.md
+
+theme: minima
