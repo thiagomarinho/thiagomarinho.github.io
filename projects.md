@@ -4,5 +4,5 @@ title: Projects
 permalink: /projects/
 ---
 
-[JKS Test](https://github.com/thiagomarinho/jks-test)
+[JKS Test](https://github.com/thiagomarinho/jks-test) (pt/br) (done)
 
