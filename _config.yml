@@ -10,4 +10,7 @@ header_pages:
   - about.md
   - projects.md
 
+google_analytics: UA-21612517-1
+
+
 theme: minima
