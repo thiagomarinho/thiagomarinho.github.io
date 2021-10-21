@@ -14,3 +14,6 @@ google_analytics: UA-21612517-1
 
 
 theme: minima
+
+minima:
+  skin: dark
