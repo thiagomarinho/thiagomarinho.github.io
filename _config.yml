@@ -12,5 +12,7 @@ header_pages:
 
 google_analytics: UA-21612517-1
 
+plugins:
+  - jekyll-remote-theme
 
-theme: minima
+remote_theme: jekyll/minima
