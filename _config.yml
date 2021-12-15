@@ -1,8 +1,8 @@
 title: Thiago Marinho
-author: Thiago Marinho
 
-github_username:  thiagomarinho
-linkedin_username: thiagoomarinho
+site:
+  author:
+    name: Thiago Marinho
 
 header_pages:
   - about.md
