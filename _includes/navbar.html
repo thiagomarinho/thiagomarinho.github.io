@@ -20,6 +20,16 @@
         <li class="nav-item">
           <a class="nav-link" href="{{"/projects" | relative_url }}">Projects</a>
         </li>
+      {% if post.lang == "es" or page.lang  == "es" or site.lang == "es" or post.tags contains "spanish" %}
+        <li><a href="http://www.cecivieira.com/"> 🇧🇷 </a></li>
+        <li><a href="http://www.cecivieira.com//en"> 🇬🇧 </a></li>
+      {% elsif post.lang == "en" or page.lang  == "en" or site.lang == "en" or post.tags contains "english" %}
+        <li><a href="http://www.cecivieira.com/"> 🇧🇷 </a></li>
+        <li><a href="http://www.cecivieira.com//es"> 🇪🇸 </a></li> 
+      { % else % }                
+        <li><a href="http://www.cecivieira.com//es"> 🇪🇸 </a></li>
+        <li><a href="http://www.cecivieira.com//en"> 🇬🇧 </a></li>
+      {% endif %}
       </ul>
     </div>
   </div>

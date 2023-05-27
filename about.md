@@ -1,7 +1,10 @@
 ---
 layout: page
 title: About me
-permalink: /about/
+
+namespace: projects
+permalink: /projetos/
+permalink_en: /projects/
 ---
 
 Hello! I have 13+ years of experience working with software development. I work at Thoughtworks as a Platform Engineer, helping teams to get the resources they need to publish their applications and bring value to their customers and company.

@@ -1,7 +1,10 @@
 ---
 layout: page
-title: Projects
-permalink: /projects/
+title: Projetos
+
+namespace: projects
+permalink: /projetos/
+permalink_en: /projects/
 ---
 
 [JKS Test - How to setup your local environment to work with and test JKS "things"](https://github.com/thiagomarinho/jks-test) (pt/br)
