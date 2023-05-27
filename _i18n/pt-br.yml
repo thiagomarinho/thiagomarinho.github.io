@@ -1,0 +1,9 @@
+pages:
+  about: Sobre mim
+  posts: Posts
+  projects: Projetos
+  home: Home
+links:
+  about: sobre-mim
+  posts: posts
+  projects: projetos

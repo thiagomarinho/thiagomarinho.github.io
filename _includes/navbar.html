@@ -9,26 +9,21 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{"/" | relative_url }}">Home</a>
+          <a class="nav-link" href="{{"/" | relative_url }}">{% t pages.home %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{"/about" | relative_url }}">About</a>
+          <a class="nav-link" href="/{% t links.about %}">{% t pages.about %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ "/posts" | relative_url }}">Posts</a>
+          <a class="nav-link" href="/{% t links.posts %}"">{% t pages.posts %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{"/projects" | relative_url }}">Projects</a>
+          <a class="nav-link" href="/{% t links.projects %}"">{% t pages.projects %}</a>
         </li>
-      {% if post.lang == "es" or page.lang  == "es" or site.lang == "es" or post.tags contains "spanish" %}
-        <li><a href="http://www.cecivieira.com/"> 🇧🇷 </a></li>
-        <li><a href="http://www.cecivieira.com//en"> 🇬🇧 </a></li>
+      {% if post.lang == "pt-br" or page.lang  == "pt-br" or site.lang == "pt-br" or post.tags contains "portuguese" %}
+        <li><a href="https://thiagomarinho.net/en"> 🇬🇧 </a></li>
       {% elsif post.lang == "en" or page.lang  == "en" or site.lang == "en" or post.tags contains "english" %}
-        <li><a href="http://www.cecivieira.com/"> 🇧🇷 </a></li>
-        <li><a href="http://www.cecivieira.com//es"> 🇪🇸 </a></li> 
-      { % else % }                
-        <li><a href="http://www.cecivieira.com//es"> 🇪🇸 </a></li>
-        <li><a href="http://www.cecivieira.com//en"> 🇬🇧 </a></li>
+        <li><a href="https://thiagomarinho.net/"> 🇧🇷 </a></li>
       {% endif %}
       </ul>
     </div>

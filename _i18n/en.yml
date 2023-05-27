@@ -1,0 +1,9 @@
+pages:
+  about: About
+  posts: Posts
+  projects: Projects
+  home: Home
+links:
+  about: about
+  posts: posts
+  projects: Projects

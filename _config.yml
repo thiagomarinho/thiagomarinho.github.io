@@ -1,6 +1,8 @@
 title: Thiago Marinho
 author: Thiago Marinho
 url: thiagomarinho.net
+permalink: /:title/
+base_url:
 
 twitter_username: thiagomarinho
 github_username: thiagomarinho
@@ -20,4 +22,5 @@ markdown: kramdown
 paginate: 5
 paginate_path: "/posts/page:num/"
 languages: ["pt-br", "en"]
+include: ["_pages"]
 exclude_from_localizations: ["javascript", "images", "css"]
