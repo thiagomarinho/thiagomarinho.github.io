@@ -1,22 +1,19 @@
 title: Thiago Marinho
+author: Thiago Marinho
+url: thiagomarinho.net
 
-site:
-  author:
-    name: Thiago Marinho
-
-header_pages:
-  - about.md
-  - projects.md
+twitter_username: thiagomarinho
+github_username: thiagomarinho
+linkedin_username: thiagoomarinho
 
 google_analytics: UA-21612517-1
 
+theme: jekyll-theme-clean-blog
+
+markdown: kramdown
+paginate: 5
+paginate_path: "/posts/page:num/"
 plugins:
-  - jekyll-remote-theme
-
-remote_theme: jekyll/minima
-
-minima:
-  skin: dark
-  social_links:
-    github:  thiagomarinho
-    linkedin: thiagoomarinho
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap

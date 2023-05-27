@@ -4,7 +4,7 @@ title: About me
 permalink: /about/
 ---
 
-I have 12+ years of experience working with software development. I work at Thoughtworks as a Platform Engineer, helping teams to get the resources they need to publish their applications and bring value to their customers and company.
+Hello! I have 13+ years of experience working with software development. I work at Thoughtworks as a Platform Engineer, helping teams to get the resources they need to publish their applications and bring value to their customers and company.
 
 I have experience with Terraform, Puppet, Ansible and some experience with Kubernetes, provisioning VMs and kubernetes clusters in cloud providers like Azure, Digital Ocean, Google Cloud Platform and AWS.
 
