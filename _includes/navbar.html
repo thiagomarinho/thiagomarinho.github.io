@@ -12,13 +12,13 @@
           <a class="nav-link" href="{{"/" | relative_url }}">{% t pages.home %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/{% t links.about %}">{% t pages.about %}</a>
+          <a class="nav-link" href="{{ site.baseurl }}/{% t links.about %}/">{% t pages.about %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/{% t links.posts %}"">{% t pages.posts %}</a>
+          <a class="nav-link" href="{{ site.baseurl }}/{% t links.posts %}/">{% t pages.posts %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/{% t links.projects %}"">{% t pages.projects %}</a>
+          <a class="nav-link" href="{{ site.baseurl }}/{% t links.projects %}/">{% t pages.projects %}</a>
         </li>
       {% if post.lang == "pt-br" or page.lang  == "pt-br" or site.lang == "pt-br" or post.tags contains "portuguese" %}
         <li><a href="https://thiagomarinho.net/en"> 🇬🇧 </a></li>
