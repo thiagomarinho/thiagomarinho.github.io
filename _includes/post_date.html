@@ -1,0 +1,9 @@
+{% assign post_date = include.post_date %}
+{% assign post_lang = include.post_lang %}
+{% assign months = "january|february|march|april|may|june|july|august|september|october|november|december" | split: "|" %}
+{% assign m = post_date | date: "%-m" | minus: 1 %}
+{% assign day = post_date | date: "%d" %}
+{% assign month = months[m] %}
+{% assign year = post_date | date: "%Y" %}
+
+{% t main.posts.posted_on %} {% if post_lang == 'pt-br' %}{{day}} de {% t month %} de {{year}}{% endif %}{% if post_lang == 'en' %}{{ page.date | date: '%B %d, %Y' }}{% endif %}

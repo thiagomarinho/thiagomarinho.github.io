@@ -1,12 +1,10 @@
 ---
 layout: page
-title: 
+title: pages.projects
 namespace: projects
 permalink: /projetos/
 permalink_en: /projects/
 comments: false
 ---
-
-<h2>{% t pages.projects %}</h2>
 
 {% tf projects.html %}

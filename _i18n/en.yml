@@ -1,8 +1,22 @@
+january: January
+february: February
+march: March
+april: April
+may: May
+june: June
+july: July
+august: August
+september: September
+october: October
+november: November
+december: December
+
 pages:
   about: About
   posts: Posts
   projects: Projects
   home: Home
+  home_title: Hello world!
 
 links:
   about: about
@@ -12,5 +26,8 @@ links:
 main:
   posts:
     toc: Sumary
-    translate: You could read this post in
+    translate: Você também pode ler esse texto em
     prev-next: Ready also
+    read: read
+    posted_by: Posted by
+    posted_on: "on"

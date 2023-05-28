@@ -17,10 +17,9 @@ layout: default
             {% if page.subtitle %}
             <h2 class="subheading">{{ page.subtitle }}</h2>
             {% endif %}
-            <span class="meta">Posted by
+            <span class="meta">{% t main.posts.posted_by %}
               <a href="#">{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</a>
-              on {{ page.date | date: '%B %d, %Y' }} &middot; {% include read_time.html
-              content=page.content %}
+              {% include post_date.html post_date=page.date post_lang=page.lang %} &middot; {% include read_time.html content=page.content %}
             </span>
           </div>
         </div>
@@ -57,10 +56,10 @@ layout: default
       {% if page.translated-ptbr or page.translated-en %}
       <p> {% t main.posts.translate %}: 
           {% if page.translated-ptbr %}
-              <a href="https://{{ site.url }}{{ page.translated-ptbr }}"> 🇧🇷 </a>
+              <a href="{{ page.translated-ptbr }}"> 🇧🇷 </a>
           {% endif %}
           {% if page.translated-en %}
-              <a href="https://{{ site.url }}/en{{ page.translated-en }}"> 🇺🇲 </a>
+              <a href="/en{{ page.translated-en }}"> 🇺🇲 </a>
           {% endif %}
       </p> 
       {% endif %}

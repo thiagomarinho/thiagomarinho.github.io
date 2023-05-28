@@ -1,8 +1,22 @@
+january: Janeiro
+february: Fevereiro
+march: Março
+april: Abril
+may: Maio
+june: Junho
+july: Julho
+august: Agosto
+september: Setembro
+october: Outubro
+november: Novembro
+december: Dezembro
+
 pages:
   about: Sobre mim
   posts: Posts
   projects: Projetos
   home: Home
+  home_title: Olá mundo!
 
 links:
   about: sobre-mim
@@ -12,5 +26,8 @@ links:
 main:
   posts:
     toc: Sumário
-    translate: Você também pode ler esse texto em
+    translate: You can also read this post in
     prev-next: Leia também
+    read: de leitura
+    posted_by: Postado por
+    posted_on: em
