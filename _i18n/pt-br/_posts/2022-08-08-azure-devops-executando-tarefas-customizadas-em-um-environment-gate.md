@@ -2,7 +2,9 @@
 layout: post
 title: "Azure Devops - Executando tarefas customizadas em um Environment Gate"
 date: 2022-08-08 22:03:00 -0000
-categories: azure-devops pipelines custom-extension portuguese
+lang: pt-br
+translated-en: /azure-devops-running-custom-tasks-from-an-environment-gate
+categories: azure-devops pipelines custom-extension
 ---
 
 Meu time estava explorando a possibilidade de criar uma [tarefa customizada no Azure Devops](https://github.com/microsoft/azure-pipelines-tasks/blob/master/docs/authoring/servertaskauthoring.md) que seria executada em um [Environment Gate](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass).

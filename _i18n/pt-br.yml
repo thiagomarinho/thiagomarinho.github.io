@@ -3,7 +3,14 @@ pages:
   posts: Posts
   projects: Projetos
   home: Home
+
 links:
   about: sobre-mim
   posts: posts
   projects: projetos
+
+main:
+  posts:
+    toc: Sumário
+    translate: Você também pode ler esse texto em
+    prev-next: Leia também

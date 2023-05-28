@@ -3,7 +3,14 @@ pages:
   posts: Posts
   projects: Projects
   home: Home
+
 links:
   about: about
   posts: posts
   projects: projects
+
+main:
+  posts:
+    toc: Sumary
+    translate: You could read this post in
+    prev-next: Ready also

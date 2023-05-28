@@ -2,6 +2,8 @@
 layout: post
 title: "Azure Devops - Running custom tasks from an environment gate"
 date: 2022-08-08 22:03:00 -0000
+lang: en
+translated-ptbr: /azure-devops-executando-tarefas-customizadas-em-um-environment-gate
 categories: azure-devops pipelines custom-extension english
 ---
 
