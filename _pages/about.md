@@ -1,6 +1,7 @@
 ---
 layout: page
 title: pages.about
+translate_title: true
 namespace: about
 permalink: /sobre-mim/
 permalink_en: /about/
