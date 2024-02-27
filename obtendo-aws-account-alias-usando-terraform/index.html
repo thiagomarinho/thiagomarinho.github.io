@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    
+      
+      AWS - Obtendo account alias usando Terraform
+      
+      - Thiago Marinho
+    
+  </title>
+
+  <meta name="description" content="As vezes, pra fazer algum tipo de automação, é interessante utilizar o alias da conta AWS como parte do nome de algum recurso, como tag etc. Curiosamente, ao...">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="thiagomarinho.net/obtendo-aws-account-alias-usando-terraform/">
+  <link rel="alternate" type="application/rss+xml" title="Thiago Marinho" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">Thiago Marinho</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sobre-mim/">Sobre mim</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts/">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/projetos/">Projetos</a>
+        </li>
+      
+        <li><a href="https://thiagomarinho.net/en"> 🇺🇲 </a></li>
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>AWS - Obtendo account alias usando Terraform</h1>
+            
+            <span class="meta">Postado por
+              <a href="#">Thiago Marinho</a>
+              
+
+
+
+
+
+
+
+em 20 de Setembro de 2023 &middot; <span class="reading-time" title="Estimated read time">
+  
+   3 mins  de leitura </span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <p>As vezes, pra fazer algum tipo de automação, é interessante utilizar o alias da conta AWS como parte do nome de algum recurso, como tag etc. Curiosamente, ao procurar por <code class="language-plaintext highlighter-rouge">alias</code> na <a href="">página da documentação do provider</a>, o que você encontra, dentre outros, é <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_account_alias">esse recurso</a>:</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span> <span class="s2">"aws_iam_account_alias"</span> <span class="s2">"current"</span> <span class="p">{}</span>
+
+<span class="nx">output</span> <span class="s2">"account_id"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="nx">data</span><span class="err">.</span><span class="nx">aws_iam_account_alias</span><span class="err">.</span><span class="nx">current</span><span class="err">.</span><span class="nx">account_alias</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Por conta de seu nome, pode parecer que ele é exatamente o que você precisa, mas na verdade, ele é utilizado para <a href="https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/console_account-alias.html">personalizar a URL de login da sua conta</a>.</p>
+
+<p>Ao invés disso, o que muito provavelmente você está procurando é o alias da conta dentro de sua organização; para obter esse valor, você pode utilizar esse código aqui:</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span> <span class="s2">"aws_caller_identity"</span> <span class="s2">"current"</span> <span class="p">{}</span>
+
+<span class="nx">data</span> <span class="s2">"aws_organizations_organization"</span> <span class="s2">"org"</span> <span class="p">{}</span>
+
+<span class="nx">locals</span> <span class="p">{</span>
+  <span class="nx">aws_account_name</span> <span class="p">=</span> <span class="nx">compact</span><span class="err">(</span><span class="p">[</span><span class="nx">for</span> <span class="nx">account</span> <span class="nx">in</span> <span class="nx">data</span><span class="err">.</span><span class="nx">aws_organizations_organization</span><span class="err">.</span><span class="nx">org</span><span class="err">.</span><span class="nx">accounts</span> <span class="err">:</span> <span class="nx">account</span><span class="err">.</span><span class="nx">id</span> <span class="err">==</span> <span class="nx">data</span><span class="err">.</span><span class="nx">aws_caller_identity</span><span class="err">.</span><span class="nx">current</span><span class="err">.</span><span class="nx">id</span> <span class="err">?</span> <span class="nx">account</span><span class="err">.</span><span class="nx">name</span> <span class="err">:</span> <span class="s2">""</span><span class="p">]</span><span class="err">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">output</span> <span class="s2">"account_alias"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="nx">local</span><span class="err">.</span><span class="nx">aws_account_name</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity">aws_caller_identity</a>;</li>
+  <li><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization">aws_organizations_organization</a>;</li>
+  <li><a href="https://developer.hashicorp.com/terraform/language/functions/compact">Terraform - função <code class="language-plaintext highlighter-rouge">compact</code></a>;</li>
+  <li><a href="https://developer.hashicorp.com/terraform/language/expressions/for">Terraform - expressões <code class="language-plaintext highlighter-rouge">for</code></a>.</li>
+</ul>
+
+<p>Inclusive poderia ser uma possível inclusão em um módulo <code class="language-plaintext highlighter-rouge">info</code>, caso você possua ou queira prover algo do tipo:</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span> <span class="s2">"info"</span> <span class="p">{</span>
+  <span class="nx">source</span> <span class="s2">"..."</span>
+<span class="p">}</span>
+
+<span class="nx">output</span> <span class="s2">"account_alias"</span> <span class="p">{</span>
+  <span class="nx">value</span> <span class="p">=</span> <span class="nx">module</span><span class="err">.</span><span class="nx">info</span><span class="err">.</span><span class="nx">account_alias</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>MAS</strong></p>
+
+<p>Esse código só vai funcionar se a identidade executando o código atualmente for a conta de gerenciamento da organização ou um delegated administrator:</p>
+
+<ul>
+  <li>https://docs.aws.amazon.com/pt_br/organizations/latest/APIReference/API_ListAccounts.html</li>
+  <li>https://github.com/hashicorp/terraform-provider-aws/issues/18590</li>
+</ul>
+
+<p>Se não for esse seu caso, infelizmente ainda não há um datasource que retorne o alias apenas de sua conta; algo como descrito nessa issue (aberta):</p>
+
+<ul>
+  <li>https://github.com/hashicorp/terraform-provider-aws/issues/30656</li>
+</ul>
+
+<p>Por enquanto, se você estiver nesse cenário e realmente precisar usar esse alias, sua melhor opção é provavelmente utilizar esse comando do AWS CLI:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws organizations describe-account <span class="nt">--account-id</span> &lt;ACCOUNT-ID&gt;
+</code></pre></div></div>
+
+<p>E obter o alias a partir do retorno.</p>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/azure-devops-executando-tarefas-customizadas-em-um-environment-gate/" data-toggle="tooltip" data-placement="top" title="Azure Devops - Executando tarefas customizadas em um Environment Gate">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Version in other languages -->
+    <div class="language-version">
+      
+    </div>
+  </div>
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/thiagomarinho">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/thiagoomarinho">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/thiagomarinho">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Thiago Marinho 2024</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLVZTD5ZQH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLVZTD5ZQH');
+</script>
+
+
+
+</body>
+
+</html>
